@@ -14,7 +14,13 @@ tx_amount = get_user_input()
 #saving the value of input function in a variable calle tx_amount
 add_value(tx_amount)
 
-tx_amount = get_user_input()
+# while True:
+#     tx_amount = get_user_input()
+#     add_value(transaction_amount=tx_amount,last_transaction=get_last_blockchain_value())
+
+#     for block in blockchain:
+#         print(block)
+
 
 add_value(last_transaction=get_last_blockchain_value(),transaction_amount=tx_amount)
 
@@ -27,4 +33,6 @@ tx_amount = get_user_input()
 add_value(last_transaction =get_last_blockchain_value(),transaction_amount=tx_amount)
 
 print(blockchain)
+
+
 
