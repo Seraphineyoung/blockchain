@@ -27,29 +27,52 @@ def print_blockchain_elements():
         print(block)
 
 def verify_chain():
-    block_index = 0
+    #using a range() function
     is_valid = True
-    for block in blockchain:
+    for block_index in range(len(blockchain)):
+
         if block_index == 0:
-            block_index += 1
             continue
 
-        elif block[0] == blockchain[block_index - 1]:
-            print (block , 'first element')
-            print(blockchain[block_index - 1])
+        elif blockchain[block_index][0] == blockchain[block_index - 1]:
+            print (blockchain[block_index][0] , 'first element in the blockhain')
+            print (blockchain[block_index] , 'print blockchain_index')
+            print (blockchain[block_index - 1],'print blockchain[block_index - 1]')
             is_valid = True
 
         else:
             is_valid = False
             break
-        block_index += 1
-
+        
     return is_valid
+        
 
 
 
+    # block_index = 0
+    # is_valid = True
+    # for block in blockchain:
+    #     if block_index == 0:
+    #         block_index += 1
+    #         continue
 
-while True:
+    #     elif block[0] == blockchain[block_index - 1]:
+    #         print (block , 'first element')
+    #         print(blockchain[block_index - 1])
+    #         is_valid = True
+
+    #     else:
+    #         is_valid = False
+    #         break
+    #     block_index += 1
+
+    # return is_valid
+
+
+
+#Insted of setting the while loop to True, we set it to a variable and when we want to break out of the loop we set it the variable to false.
+waiting_for_input = True
+while waiting_for_input:
     print('please choose')
     print('1: Add a new transaction value')
     print('2: Output the blockchain blocks')
@@ -69,7 +92,8 @@ while True:
             blockchain[0] = [2]
 
     elif user_choice == 'q':
-         break
+        #setting the waiting variable to false to exit the loop
+         waiting_for_input = False
     else:
         print('Invalid input')
 
