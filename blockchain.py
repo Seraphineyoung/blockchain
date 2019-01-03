@@ -1,10 +1,16 @@
 blockchain = []
 
 def get_last_blockchain_value():
+    if len(blockchain) < 1:
+        return None
+    # not need for an else statement here,if the statement is True the first return will run and exit the fxn, the second will not run.
     return blockchain[-1]
 
 #Used default arguments in setting the first last_transaction amount
-def add_value(transaction_amount,last_transaction=[1]):
+def add_transaction(transaction_amount,last_transaction):
+
+    if last_transaction == None:
+        last_transaction = [1]
     blockchain.append([last_transaction,transaction_amount])
 
 def get_transaction_value():
@@ -20,10 +26,7 @@ def print_blockchain_elements():
     for block in blockchain:
         print(block)
 
-   
-tx_amount = get_transaction_value()
-#saving the value of input function in a variable calle tx_amount
-add_value(tx_amount)
+
 
 while True:
     print('please choose')
@@ -34,7 +37,7 @@ while True:
     user_choice = get_user_choice()
     if user_choice == '1':
         tx_amount = get_transaction_value()
-        add_value(transaction_amount=tx_amount,last_transaction=get_last_blockchain_value())
+        add_transaction(transaction_amount=tx_amount,last_transaction=get_last_blockchain_value())
 
     elif user_choice == '2':
         print_blockchain_elements()
