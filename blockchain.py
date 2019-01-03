@@ -45,30 +45,7 @@ def verify_chain():
             break
         
     return is_valid
-        
-
-
-
-    # block_index = 0
-    # is_valid = True
-    # for block in blockchain:
-    #     if block_index == 0:
-    #         block_index += 1
-    #         continue
-
-    #     elif block[0] == blockchain[block_index - 1]:
-    #         print (block , 'first element')
-    #         print(blockchain[block_index - 1])
-    #         is_valid = True
-
-    #     else:
-    #         is_valid = False
-    #         break
-    #     block_index += 1
-
-    # return is_valid
-
-
+    
 
 #Insted of setting the while loop to True, we set it to a variable and when we want to break out of the loop we set it the variable to false.
 waiting_for_input = True
@@ -99,6 +76,7 @@ while waiting_for_input:
 
     if not verify_chain():
         print('invalid blockchain')
+        print_blockchain_elements()
         break
 
 print('done')   
