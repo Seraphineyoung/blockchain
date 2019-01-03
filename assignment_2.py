@@ -11,7 +11,17 @@ for each_name in list_of_name:
 # 2) Add an if  check inside the loop to only output names longer than 5 characters.
        
 # 3) Add another if  check to see whether a name includes a “n”  or “N”  character.
-    if lenght_of_each_name > 5:
-        if  'n' in each_name or 'N' in each_name:
-            print(each_name)
+    if lenght_of_each_name > 5 and ('n' in each_name or 'N' in each_name):
+        print(each_name)
+
+print ("--" * 20 )
 # 4) Use a while  loop to empty the list of names (via pop() )
+
+while len(list_of_name) >= 1:
+    print(list_of_name.pop())
+
+print(list_of_name)
+
+
+    
+    
