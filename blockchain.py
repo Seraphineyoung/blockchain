@@ -1,3 +1,12 @@
+
+#genesis_block is the first block in the blockchain as the next ones will need a previous hash key. 
+
+genesis_block = {
+    "previous_hash": "XYZ",
+    "index" : len(blockchain),
+    "transactions" : open_transactions
+}
+
 blockchain = []
 #Open_transactions hows a list of new trascations that have not been processed yet
 open_transactions = []
@@ -25,7 +34,17 @@ def add_transaction(recipient,sender=owner,amount=1.0):
 
 #when the mine_block function is called, this should take all the open transactions and add them to a block, which will be eventually added to the blockchain.
 def mine_block():
-    block = {"previous_hash":}
+
+    last_block = blockchain[-1]
+
+    block = {
+    "previous_hash": "XYZ",
+    "index" : len(blockchain),
+    "transactions" : open_transactions
+    }
+
+    blockchain.append(block)
+
 
 
 
