@@ -2,12 +2,14 @@
 #genesis_block is the first block in the blockchain as the next ones will need a previous hash key. 
 
 genesis_block = {
-    "previous_hash": "XYZ",
-    "index" : len(blockchain),
-    "transactions" : open_transactions
+    "previous_hash": "",
+    "index" : 0,
+    "transactions" : []
 }
 
-blockchain = []
+# Then add the genesis_block to the blockchain, so it will not throw an error when last_block variable is trying to access the last block.
+
+blockchain = [genesis_block]
 #Open_transactions hows a list of new trascations that have not been processed yet
 open_transactions = []
 owner = "seraphine"
@@ -36,6 +38,14 @@ def add_transaction(recipient,sender=owner,amount=1.0):
 def mine_block():
 
     last_block = blockchain[-1]
+
+    hashed_block = ""
+
+#to access the previous hash, loop through last_block that holds the previous block, and access the key "previous_hash"
+    for key in last_block:
+        value =last_block[key]
+ #hashed_block variable is used to store all the values   
+        hashed_block = hashed_block + value
 
     block = {
     "previous_hash": "XYZ",
