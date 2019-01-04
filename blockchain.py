@@ -38,14 +38,14 @@ def add_transaction(recipient,sender=owner,amount=1.0):
 def mine_block():
 
     last_block = blockchain[-1]
-
     hashed_block = ""
-
 #to access the previous hash, loop through last_block that holds the previous block, and access the key "previous_hash"
     for key in last_block:
-        value =last_block[key]
+        value = last_block[key]
  #hashed_block variable is used to store all the values   
-        hashed_block = hashed_block + value
+        hashed_block = hashed_block + str(value)
+    
+    print(hashed_block)
 
     block = {
     "previous_hash": "XYZ",
@@ -54,10 +54,6 @@ def mine_block():
     }
 
     blockchain.append(block)
-
-
-
-
 
 
 
@@ -103,7 +99,8 @@ waiting_for_input = True
 while waiting_for_input:
     print('please choose')
     print('1: Add a new transaction value')
-    print('2: Output the blockchain blocks')
+    print('2: Mine a new block')
+    print('3: Output the blockchain blocks')
     print('h: Manipulate the chain')
     print('q: Quit')
 
@@ -117,6 +114,9 @@ while waiting_for_input:
         print(open_transactions)
 
     elif user_choice == '2':
+        mine_block()
+
+    elif user_choice == '3':
         print_blockchain_elements()
 
     elif user_choice == 'h':
@@ -129,10 +129,10 @@ while waiting_for_input:
     else:
         print('Invalid input')
 
-    if not verify_chain():
-        print('invalid blockchain')
-        print_blockchain_elements()
-        break
+    # if not verify_chain():
+    #     print('invalid blockchain')
+    #     print_blockchain_elements()
+    #     break
 
 print('done')   
 
