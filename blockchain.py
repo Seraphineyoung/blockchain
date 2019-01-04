@@ -1,4 +1,7 @@
 blockchain = []
+#Open_transactions hows a list of new trascations that have not been processed yet
+open_transactions = []
+owner = "seraphine"
 
 def get_last_blockchain_value():
     if len(blockchain) < 1:
@@ -7,14 +10,27 @@ def get_last_blockchain_value():
     return blockchain[-1]
 
 #Used default arguments in setting the first last_transaction amount
-def add_transaction(transaction_amount,last_transaction):
+def add_transaction(recipient,sender=owner,amount=1.0):
 
-    if last_transaction == None:
-        last_transaction = [1]
-    blockchain.append([last_transaction,transaction_amount])
+"""
+:sender : The sender of the coins
+:recipient: The rcipient of the coins
+:amount : The amount of coins sent with the transaction(default = 1.0)
+"""
+    transaction = {
+    "sender" : sender,
+    "recipient": recipient
+    "amount": amount
+    }
+    open_transactions.append(transaction)
+   
+def mine_block():
+    pass
 
 def get_transaction_value():
-    return (input('Transaction Amount please ?:'))
+    tx_recipient = input('Enter the recipient of the transaction:')
+    tx_amount = float((input('Transaction Amount please ?:'))
+    return tx_recipient , tx_amount
 
 
 def get_user_choice():
@@ -57,9 +73,12 @@ while waiting_for_input:
     print('q: Quit')
 
     user_choice = get_user_choice()
+
     if user_choice == '1':
-        tx_amount = get_transaction_value()
-        add_transaction(transaction_amount=tx_amount,last_transaction=get_last_blockchain_value())
+        tx_data = get_transaction_value()
+        recipient, amount = tx_data
+        #Adding transaction to opentransaction
+        add_transaction(recipient,amount=amount)
 
     elif user_choice == '2':
         print_blockchain_elements()
