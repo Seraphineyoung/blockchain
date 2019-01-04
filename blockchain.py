@@ -11,26 +11,32 @@ def get_last_blockchain_value():
 
 #Used default arguments in setting the first last_transaction amount
 def add_transaction(recipient,sender=owner,amount=1.0):
-
-"""
+    """
 :sender : The sender of the coins
 :recipient: The rcipient of the coins
 :amount : The amount of coins sent with the transaction(default = 1.0)
 """
     transaction = {
     "sender" : sender,
-    "recipient": recipient
+    "recipient": recipient,
     "amount": amount
     }
     open_transactions.append(transaction)
-   
+
+#when the mine_block function is called, this should take all the open transactions and add them to a block, which will be eventually added to the blockchain.
 def mine_block():
-    pass
+    block = {"previous_hash":}
+
+
+
+
+
 
 def get_transaction_value():
     tx_recipient = input('Enter the recipient of the transaction:')
-    tx_amount = float((input('Transaction Amount please ?:'))
-    return tx_recipient , tx_amount
+    tx_amount = float((input('Transaction Amount please ?:')))
+    return tx_recipient, tx_amount
+
 
 
 def get_user_choice():
@@ -79,6 +85,7 @@ while waiting_for_input:
         recipient, amount = tx_data
         #Adding transaction to opentransaction
         add_transaction(recipient,amount=amount)
+        print(open_transactions)
 
     elif user_choice == '2':
         print_blockchain_elements()
