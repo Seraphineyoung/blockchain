@@ -14,6 +14,11 @@ blockchain = [genesis_block]
 open_transactions = []
 owner = "seraphine"
 
+def hash_block(block):
+    return "-".join([str(block[key]) for key in block])
+
+
+
 def get_last_blockchain_value():
     if len(blockchain) < 1:
         return None
@@ -39,7 +44,7 @@ def mine_block():
 
     last_block = blockchain[-1]
     # using list comprehension
-    hashed_block = "-".join([str(last_block[key]) for key in last_block])
+    hashed_block = hash_block(last_block)
 
 #to access the previous hash, loop through last_block that holds the previous block, and access the key "previous_hash"
     # for key in last_block:
@@ -47,10 +52,10 @@ def mine_block():
  #hashed_block variable is used to store all the values   
         # hashed_block = hashed_block + str(value)
     
-    print(hashed_block)
+    print(hashed_block, 'this is hashed_block')
 
     block = {
-    "previous_hash": "XYZ",
+    "previous_hash": hashed_block,
     "index" : len(blockchain),
     "transactions" : open_transactions
     }
@@ -76,27 +81,17 @@ def print_blockchain_elements():
         print(block)
 
 def verify_chain():
-    #using a range() function
-    is_valid = True
-    for block_index in range(len(blockchain)):
-
-        if block_index == 0:
+#    if you wrap an element in enumerate it will return a tuple with the index of that element and the element itself 
+    for (index,block) in enumerate(blockchain):
+        print(index,block , 'this is the index and block')
+        if index == 0:
             continue
+        if block['previous_hash'] != hash_block(blockchain[index - 1]):
+            print(hash_block(blockchain[index - 1]))
+            return False        
+    return True
+   
 
-        elif blockchain[block_index][0] == blockchain[block_index - 1]:
-            print (blockchain[block_index][0] , 'first element in the blockhain')
-            print (blockchain[block_index] , 'print blockchain_index')
-            print (blockchain[block_index - 1],'print blockchain[block_index - 1]')
-            is_valid = True
-
-        else:
-            is_valid = False
-            break
-        
-    return is_valid
-    
-
-#Insted of setting the while loop to True, we set it to a variable and when we want to break out of the loop we set it the variable to false.
 waiting_for_input = True
 while waiting_for_input:
     print('please choose')
@@ -131,10 +126,10 @@ while waiting_for_input:
     else:
         print('Invalid input')
 
-    # if not verify_chain():
-    #     print('invalid blockchain')
-    #     print_blockchain_elements()
-    #     break
+    if not verify_chain():
+        print_blockchain_elements()
+        print('invalid blockchain')
+        break
 
 print('done')   
 
