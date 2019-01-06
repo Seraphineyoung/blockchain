@@ -38,12 +38,14 @@ def add_transaction(recipient,sender=owner,amount=1.0):
 def mine_block():
 
     last_block = blockchain[-1]
-    hashed_block = ""
+    # using list comprehension
+    hashed_block = "-".join([str(last_block[key]) for key in last_block])
+
 #to access the previous hash, loop through last_block that holds the previous block, and access the key "previous_hash"
-    for key in last_block:
-        value = last_block[key]
+    # for key in last_block:
+    #     value = last_block[key]
  #hashed_block variable is used to store all the values   
-        hashed_block = hashed_block + str(value)
+        # hashed_block = hashed_block + str(value)
     
     print(hashed_block)
 
